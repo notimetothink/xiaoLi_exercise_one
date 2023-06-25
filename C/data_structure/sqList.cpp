@@ -1,3 +1,4 @@
+// 线性表
 #include <stdio.h>
 #define MAXSIZE 20
 

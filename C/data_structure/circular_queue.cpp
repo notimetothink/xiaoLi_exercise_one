@@ -43,6 +43,14 @@ bool deQueue(SqQueue &Q,ElemType &x){
     return true;
 }
 int main(){
-    
+    SqQueue Q;
+    ElemType x;
+    initQueue(Q);
+    enQueue(Q,1);
+    enQueue(Q,2);
+    deQueue(Q,x);
+    printf("%d\n", x);
+    deQueue(Q,x);
+    printf("%d\n", x);
     return 0;
 }

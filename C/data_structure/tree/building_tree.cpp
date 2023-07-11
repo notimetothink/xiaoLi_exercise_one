@@ -1,6 +1,43 @@
 // 层次建树
 #include "tree.h"
 
+// 初始化
+void InitQueue(LinkQueue &Q){
+    Q.front = Q.rear = (LinkNode*)malloc(sizeof(LinkNode));
+    Q.front->next = NULL;
+}
+// 判断是否为空
+bool IsEmpty(LinkQueue Q){
+    if(Q.front == Q.rear){
+        return true;
+    }else{
+        return false;
+    }
+}
+// 入队
+bool EnQueue(LinkQueue &Q,BiElemType x){
+    LinkNode *s = (LinkNode*)malloc(sizeof(LinkNode));
+    s->data = x;
+    s->next = NULL;
+    Q.rear->next = s;
+    Q.rear = Q.rear->next;
+    return true;
+}
+// 出队
+bool DeQueue(LinkQueue &Q,BiElemType &x){
+    if(IsEmpty(Q)){
+        return false;
+    }
+    LinkNode *p = Q.front->next;
+    x = p->data;
+    Q.front->next = p->next;
+    if(p == Q.rear){
+        Q.rear = Q.front;
+    }
+    free(p);
+    return true;
+}
+
 void PreOrder(BiTNode *p){
     if(p!=NULL){
         putchar(p->data);
@@ -22,6 +59,23 @@ void PostOrder(BiTNode *p){
         PostOrder(p->rchild);
         putchar(p->data);
     }
+}
+
+void LevelOrder(BiTree T){
+    LinkQueue Q;
+    InitQueue(Q);
+    BiTree p;
+    EnQueue(Q,T);
+    while (!IsEmpty(Q))
+    {
+        DeQueue(Q,p);
+        putchar(p->data);
+        if (p->lchild != NULL)
+            EnQueue(Q,p->lchild);
+        if (p->rchild != NULL)
+            EnQueue(Q,p->rchild);    
+    }
+    
 }
 int main(){
     BiTNode *pnew;
@@ -60,5 +114,7 @@ int main(){
     InOrder(tree);
     printf("\n--------后序遍历------------\n");//先打印左孩子，打印右孩子，最后打印父亲
     PostOrder(tree);
+    printf("\n--------层序遍历------------\n");
+    LevelOrder(tree);
     return 0;
 }

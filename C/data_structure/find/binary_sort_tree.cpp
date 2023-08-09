@@ -71,6 +71,34 @@ BiTree BST_search(BiTree T, Elemtype data, BiTree &p){
     }
     return T;
 }
+// 二叉排序树删除元素
+void delete_BST(BiTree &T, Elemtype data){
+    if (T == NULL){
+        return;
+    }
+    if (data<T->data){
+        delete_BST(T->left,data);
+    }else if (data>T->data){
+        delete_BST(T->right, data);
+    }else{
+        if (T->left == NULL){
+            BiTree tempNode = T;
+            T = T->right;
+            free(tempNode);
+        }else if (T->right == NULL){
+            BiTree tempNode = T;
+            T = T->left;
+            free(tempNode);
+        }else{
+            BiTree tempNode = T->left;
+            while (tempNode->right!=NULL){
+                tempNode = tempNode->right;
+            }
+            T->data = tempNode->data;
+            delete_BST(T->left,tempNode->data);
+        }
+    }
+}
 int main(){
     BiTree T = NULL,parent,s;
     Elemtype str[7] = {54,20,66,40,28,79,58};
@@ -83,5 +111,7 @@ int main(){
     }else{
         printf("没有");
     }
+    delete_BST(T,40);//删除某个结点
+    InOrder(T);
     return 0;
 }

@@ -25,27 +25,29 @@ void ST_print(SSTable T){
     printf("\n");
 }
 int partition(Elemtype A[],int low,int high){
-    // 记录对比基准值,因为采用的方法是替换不是交换
-    Elemtype pivot = A[low];
-    while (low<high){
-        while (low<high && A[high]>=pivot)
+    Elemtype value = A[low];
+    while (low<high)
+    {
+        while (low<high && A[high]>=value)
+        {
             high--;
+        }
         A[low] = A[high];
-        while (low<high && A[low]<=pivot)
+        while (low<high && A[low]<=value)
+        {
             low++;
+        }
         A[high] = A[low];
     }
-    // 此时不出意外low=high,将记录的基准值带入数组内
-    A[low] = pivot;
+    A[low] = value;
     return low;
+    
 }
 void quick_sort(Elemtype A[],int low,int high){
-    if (low<high){
-        // printf("%d%d\n",low,high);
-        // 不断二分
-        int pivotpos = partition(A,low,high);
-        quick_sort(A,low,pivotpos-1);
-        quick_sort(A,pivotpos+1,high);
+    if(low<high){
+        int mid = partition(A,low,high);
+        quick_sort(A,low,mid-1);
+        quick_sort(A,mid+1,high);
     }
 }
 int main(){

@@ -45,3 +45,13 @@ I/O thread 8 state: wait Windows aio (write thread)
 SHOW VARIABLES LIKE 'innodb_purge_threads';
 ```
 ### Page Cleaner Thread
+
+## 缓冲池
+配置innodb_buffer_pool_size设置缓冲池大小
+```sql
+SHOW VARIABLES LIKE 'innodb_buffer_pool_size';
+```
+配置innodb_buffer_pool_instances设置缓冲池数量
+```sql
+SHOW VARIABLES LIKE 'innodb_buffer_pool_instances';
+```

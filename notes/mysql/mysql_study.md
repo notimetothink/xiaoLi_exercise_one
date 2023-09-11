@@ -194,3 +194,11 @@ SHOW VARIABLES LIKE 'innodb_log_buffer_size';
 ### Dirty Page too much Checkpoint
 - 脏页数量太多进行Checkpoint
 - `inoodb_max_dirty_pages_pct`参数控制,当缓冲池脏页数量占百分之`inoodb_max_dirty_pages_pct`时，刷新一部分脏页
+
+## Master Thread
+### 1.0.x版本前
+#### loop循环(主循环)
+- 每秒操作
+  1. (总是)日志缓冲刷新到磁盘，即使事务还没提交，这是大事务提交时间短的原因
+  2. (可能)合并插入缓冲，前一秒IO小于5次的话
+  3. (可能)至多刷新100个脏页到磁盘，超过`inoodb_max_dirty_pages_pct`时

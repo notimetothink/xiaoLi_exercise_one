@@ -1,3 +1,5 @@
+// 单例模式
+package design_patterns.codes;
 public class SingletonPattern {
     public static void main(String[] args) {
         // Singleton singleton1 = new Singleton();

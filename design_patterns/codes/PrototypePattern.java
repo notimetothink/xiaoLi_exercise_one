@@ -1,3 +1,5 @@
+// 原型模式
+package design_patterns.codes;
 public class PrototypePattern {
     public static void main(String[] args) {
         Product product1 = new Product(2023, 11.4);

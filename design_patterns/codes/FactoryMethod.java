@@ -1,3 +1,4 @@
+// 工厂方法模式
 package design_patterns.codes;
 
 public class FactoryMethod {

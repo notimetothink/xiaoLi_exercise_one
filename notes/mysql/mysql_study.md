@@ -207,3 +207,4 @@ SHOW VARIABLES LIKE 'innodb_log_buffer_size';
   1. (可能)刷新100个脏页到磁盘：判断过去10秒内IO操作是否小于200次
   2. (总是)合并至多5个插入缓冲
   3. (总是)将日志缓冲刷新到磁盘
+  test

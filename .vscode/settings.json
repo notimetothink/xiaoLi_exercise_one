@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "cmath": "cpp"
+    },
+    "java.debug.settings.onBuildFailureProceed": true
+}
